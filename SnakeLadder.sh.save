@@ -29,9 +29,3 @@ do
 		echo "Position Incremented, Now Position is "$position
 	fi
 done
-if [[ $position -ge 100 ]]
-then 
-	echo "Player Won"
-else
-	echo "Player Loose"
-fi
