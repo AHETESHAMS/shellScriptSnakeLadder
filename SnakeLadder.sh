@@ -4,6 +4,7 @@ i=0
 snake1=6
 snake2=3
 snake3=8
+numberOfTimesDicePlayed=0
 while [[ $position -lt 100 ]]
 do
 	if [[ position -le 0 ]]
@@ -11,6 +12,7 @@ do
 		position=0
 	fi
 	diceCheck=$((RANDOM%7))
+	(( numberOfTimesDicePlayed++ ))
 	if [[ $diceCheck -eq $snake1 ]]
 	then
 		position=$(( position-snake ))
@@ -37,9 +39,4 @@ do
 		echo "Position Incremented, Now Position is "$position
 	fi
 done
-if [[ $position -ge 100 ]]
-then 
-	echo "Player Won"
-else
-	echo "Player Loose"
-fi
+
