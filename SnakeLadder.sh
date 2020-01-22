@@ -6,6 +6,10 @@ snake2=3
 snake3=8
 while [[ $position -lt 100 ]]
 do
+	if [[ position -le 0 ]]
+	then
+		position=0
+	fi
 	diceCheck=$((RANDOM%7))
 	if [[ $diceCheck -eq $snake1 ]]
 	then
@@ -26,6 +30,10 @@ do
 		snake3=$(( RANDOM%position*2 ))
 	else
 		position=$(( position+diceCheck ))
+		if [[ $position -gt 100 ]]
+		then 
+			position=100
+		fi
 		echo "Position Incremented, Now Position is "$position
 	fi
 done
