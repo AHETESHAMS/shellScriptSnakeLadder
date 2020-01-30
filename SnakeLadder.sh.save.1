@@ -1,0 +1,69 @@
+#!/bin/bash 
+player1Position=0
+player2Position=0
+i=0
+snake1=10
+snake2=3
+snake3=8
+numberOfTimesDicePlayed=0
+while [[ $player1Position -lt 100 || $player2Position -lt 100 ]]
+do
+	if [[ $player1Position -le 0 ]]
+	then
+		player1Position=0
+	elif [[ $player2Position -lt 0 ]]
+	then
+		player2Position=0
+	fi
+	player1DiceCheck=$((RANDOM%7))
+	player2DiceCheck=$((RANDOM%7))
+	echo "Random "$player1DiceCheck
+	(( numberOfTimesDicePlayed++ ))
+	if [[ $player1Position -eq $snake1 ]]
+	then
+		player1Position=$(( player1Position-snake ))
+		echo "Down With Snake 1, Player 1's Position got down by"$snake1
+
+   elif [[ $player2Position -eq $snake1 ]]
+   then
+      player2Position=$(( player2Position-snake ))
+      echo "Down With Snake 1,Player2's Position got down by"$snake1
+	elif [[ $player1Position -eq $snake2 ]]
+	then
+		player1Position=$(( player1Position -snake2 ))
+      echo "Down With Snake 2, Player1 Position got down by"$snake2
+	 elif [[ $player2Position -eq $snake2 ]]
+   then
+      player2Position=$(( player2Position -snake2 ))
+      echo "Down With Snake 2, Player2 Position got down by"$snake2
+	elif [[ $player1Position -eq $snake3 ]]
+	then
+		player1Position=$(( player1Position-snake3 ))
+      echo "Down With Snake 3, Player2 Position got down by"$snake3
+	elif [[ $player2Position -eq $snake3 ]]
+   then
+      player2Position=$(( player2Position-snake3 ))
+      echo "Down With Snake 3, Player2 Position got down by"$snake3
+
+	elif [[ $player1Position -gt $snake1 || $player2Position -gt $snake1 ]]
+	then
+		snake1=$(( RANDOM%position*2 ))
+		snake2=$(( RANDOM%position*2 ))
+		snake3=$(( RANDOM%position*2 ))
+	else
+		player1Position=$(( player1Position+player1DiceCheck ))
+		player2Position=$(( player2Position+player2DiceCheck ))
+		if [[ $player1Position -gt 100 ]]
+		then 
+			position=100
+		fi
+		echo "Position Incremented, Now Position is "$position
+	fi
+done
+echo $numberOfTimesDicePlayed" Times Dice Rolled"
+if [[ $player1Position -ge 100 ]]
+then
+	echo "Player 1 Won"
+else
+	echo "Player 2 Won"
+fi

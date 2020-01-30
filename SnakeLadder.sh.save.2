@@ -1,0 +1,16 @@
+
+#!/bin/bash 
+playerTurn=0
+i=0
+while [[ $i -lt 10 ]]
+do
+	if  [[ $playerTurn -eq 0 ]]
+	then
+		echo "Player 1 will Play"
+		playerTurn=1
+	else
+		echo "player 2 will Play"
+		playerTurn=0
+	fi
+(( i++ ))
+done
